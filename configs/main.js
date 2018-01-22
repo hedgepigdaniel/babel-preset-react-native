@@ -113,12 +113,12 @@ const getPreset = (src, options) => {
   };
 };
 
-module.exports = options => {
+module.exports = (api, options = {}) => {
   let presetOptions = {
     dev: false,
     modules: 'commonjs',
   };
-  if (options.withDevTools == null) {
+  if (api.withDevTools == null) {
     const env = process.env.BABEL_ENV || process.env.NODE_ENV;
     if (!env || env === 'development') {
       presetOptions.dev = true;
