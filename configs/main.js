@@ -27,16 +27,16 @@ const defaultPlugins = [
   [require('@babel/plugin-transform-regenerator')],
   [require('@babel/plugin-transform-sticky-regex')],
   [require('@babel/plugin-transform-unicode-regex')],
-  [
-    require('@babel/plugin-transform-modules-commonjs'),
-    {
-      strict: false,
-      strictMode : false, // prevent "use strict" injections
-      allowTopLevelThis: true, // dont rewrite global `this` -> `undefined`
-    },
-  ],
 ];
 
+const es2015Modules = [
+  require('@babel/plugin-transform-modules-commonjs'),
+  {
+    strict: false,
+    strictMode : false, // prevent "use strict" injections
+    allowTopLevelThis: true, // dont rewrite global `this` -> `undefined`
+  },
+];
 const es2015ArrowFunctions = [
   require('@babel/plugin-transform-arrow-functions'),
 ];
@@ -66,6 +66,9 @@ const getPreset = (src, options) => {
 
   const extraPlugins = [];
 
+  if (options.modules === 'commonjs') {
+    plugins.push(es2015Modules);
+  }
   if (hasClass) {
     extraPlugins.push(es2015Classes);
   }
@@ -99,7 +102,7 @@ const getPreset = (src, options) => {
     extraPlugins.push(reactDisplayName);
   }
 
-  if (options && options.dev) {
+  if (options.dev) {
     extraPlugins.push(reactJsxSource);
   }
 
@@ -110,17 +113,21 @@ const getPreset = (src, options) => {
   };
 };
 
-const base = getPreset(null);
-const devTools = getPreset(null, {dev: true});
-
 module.exports = options => {
+  let presetOptions = {
+    dev: false,
+    modules: 'commonjs',
+  };
   if (options.withDevTools == null) {
     const env = process.env.BABEL_ENV || process.env.NODE_ENV;
     if (!env || env === 'development') {
-      return devTools;
+      presetOptions.dev = true;
     }
   }
-  return base;
+  if (options.modules === false) {
+    presetOptions.modules = false;
+  }
+  return getPreset(null, presetOptions);
 };
 
 module.exports.getPreset = getPreset;
