@@ -56,7 +56,7 @@ const reactDisplayName = [
   require('@babel/plugin-transform-react-display-name').default,
 ];
 const reactJsxSource = [require('@babel/plugin-transform-react-jsx-source').default];
-const symbolMember = [require('../transforms/transform-symbol-member').default];
+const symbolMember = [require('../transforms/transform-symbol-member')];
 
 const getPreset = (src, options) => {
   const isNull = src === null || src === undefined;
