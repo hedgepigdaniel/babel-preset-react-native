@@ -8,29 +8,29 @@
 'use strict';
 
 const defaultPlugins = [
-  [require('@babel/plugin-transform-block-scoping')],
+  [require('@babel/plugin-transform-block-scoping').default],
   // the flow strip types plugin must go BEFORE class properties!
   // there'll be a test case that fails if you don't.
-  [require('@babel/plugin-transform-flow-strip-types')],
+  [require('@babel/plugin-transform-flow-strip-types').default],
   [
-    require('@babel/plugin-proposal-class-properties'),
+    require('@babel/plugin-proposal-class-properties').default,
     // use `this.foo = bar` instead of `this.defineProperty('foo', ...)`
     {loose: true},
   ],
-  [require('@babel/plugin-transform-computed-properties')],
-  [require('@babel/plugin-transform-destructuring')],
-  [require('@babel/plugin-transform-function-name')],
-  [require('@babel/plugin-transform-literals')],
-  [require('@babel/plugin-transform-parameters')],
-  [require('@babel/plugin-transform-shorthand-properties')],
-  [require('@babel/plugin-transform-react-jsx')],
-  [require('@babel/plugin-transform-regenerator')],
-  [require('@babel/plugin-transform-sticky-regex')],
-  [require('@babel/plugin-transform-unicode-regex')],
+  [require('@babel/plugin-transform-computed-properties').default],
+  [require('@babel/plugin-transform-destructuring').default],
+  [require('@babel/plugin-transform-function-name').default],
+  [require('@babel/plugin-transform-literals').default],
+  [require('@babel/plugin-transform-parameters').default],
+  [require('@babel/plugin-transform-shorthand-properties').default],
+  [require('@babel/plugin-transform-react-jsx').default],
+  [require('@babel/plugin-transform-regenerator').default],
+  [require('@babel/plugin-transform-sticky-regex').default],
+  [require('@babel/plugin-transform-unicode-regex').default],
 ];
 
 const es2015Modules = [
-  require('@babel/plugin-transform-modules-commonjs'),
+  require('@babel/plugin-transform-modules-commonjs').default,
   {
     strict: false,
     strictMode : false, // prevent "use strict" injections
@@ -38,25 +38,25 @@ const es2015Modules = [
   },
 ];
 const es2015ArrowFunctions = [
-  require('@babel/plugin-transform-arrow-functions'),
+  require('@babel/plugin-transform-arrow-functions').default,
 ];
-const es2015Classes = [require('@babel/plugin-transform-classes')];
-const es2015ForOf = [require('@babel/plugin-transform-for-of'), {loose: true}];
-const es2015Spread = [require('@babel/plugin-transform-spread')];
+const es2015Classes = [require('@babel/plugin-transform-classes').default];
+const es2015ForOf = [require('@babel/plugin-transform-for-of').default, {loose: true}];
+const es2015Spread = [require('@babel/plugin-transform-spread').default];
 const es2015TemplateLiterals = [
-  require('@babel/plugin-transform-template-literals'),
+  require('@babel/plugin-transform-template-literals').default,
   {loose: true}, // dont 'a'.concat('b'), just use 'a'+'b'
 ];
 const exponentiationOperator = [
-  require('@babel/plugin-transform-exponentiation-operator'),
+  require('@babel/plugin-transform-exponentiation-operator').default,
 ];
-const objectAssign = [require('@babel/plugin-transform-object-assign')];
-const objectRestSpread = [require('@babel/plugin-proposal-object-rest-spread')];
+const objectAssign = [require('@babel/plugin-transform-object-assign').default];
+const objectRestSpread = [require('@babel/plugin-proposal-object-rest-spread').default];
 const reactDisplayName = [
-  require('@babel/plugin-transform-react-display-name'),
+  require('@babel/plugin-transform-react-display-name').default,
 ];
-const reactJsxSource = [require('@babel/plugin-transform-react-jsx-source')];
-const symbolMember = [require('../transforms/transform-symbol-member')];
+const reactJsxSource = [require('@babel/plugin-transform-react-jsx-source').default];
+const symbolMember = [require('../transforms/transform-symbol-member').default];
 
 const getPreset = (src, options) => {
   const isNull = src === null || src === undefined;
