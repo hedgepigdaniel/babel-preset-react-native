@@ -31,13 +31,13 @@ const getPreset = (src, options) => {
     'transform-es2015-shorthand-properties',
     'transform-flow-strip-types',
     'transform-react-jsx',
-    'transform-regenerator',
+    'transform-regenerator'
   );
 
   if (options.modules === 'commonjs') {
     plugins.push([
       'transform-es2015-modules-commonjs',
-      { strict: false, allowTopLevelThis: true },
+      { strict: false, allowTopLevelThis: true }
     ]);
   }
   if (isNull || src.indexOf('async') !== -1 || src.indexOf('await') !== -1) {
@@ -93,7 +93,7 @@ const getPreset = (src, options) => {
 module.exports = (api, options = {}) => {
   let presetOptions = {
     dev: false,
-    modules: 'commonjs',
+    modules: 'commonjs'
   };
   if (api.withDevTools == null) {
     const env = process.env.BABEL_ENV || process.env.NODE_ENV;
